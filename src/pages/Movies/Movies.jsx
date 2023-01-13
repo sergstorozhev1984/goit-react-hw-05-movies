@@ -6,7 +6,7 @@ import { getSearchedMovies } from 'services/Api';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 
 export const Movies = () => {
-  const [isLoading, setIsLoading] = useState(false);
+//   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchedMovies, setSearchedMovies] = useState([]);
   const searchQuery = searchParams.get('query');
@@ -17,7 +17,7 @@ export const Movies = () => {
         return;
       }
     const fetchSearchedMovies = async searchQuery => {
-      setIsLoading(true);
+    //   setIsLoading(true);
       try {
         const movies = await getSearchedMovies(searchQuery);
         setSearchedMovies(movies);
@@ -25,7 +25,7 @@ export const Movies = () => {
       } catch (error) {
         toast.error(`Oops! Something went wrong! ${error}`);
       } finally {
-        setIsLoading(false);
+        // setIsLoading(false);
       }
     };
     fetchSearchedMovies(searchQuery);
