@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import css from './MoviesList.module.css';
+import PropTypes from 'prop-types';
 
 export const MoviesList = ({ movies }) => {
   const imgBaseUrl = 'https://image.tmdb.org/t/p/w500/';
@@ -17,3 +18,14 @@ export const MoviesList = ({ movies }) => {
     </ul>
   );
 };
+
+MoviesList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string,
+      name: PropTypes.string,
+      poster_path: PropTypes.string,
+    }).isRequired,
+  ).isRequired
+}

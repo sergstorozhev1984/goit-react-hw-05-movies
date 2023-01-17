@@ -1,0 +1,14 @@
+.item {
+    list-style-type: none;
+}
+.author {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.content {
+    line-height: 2;
+    font-size: 20px;
+    padding-left: 30px;
+}

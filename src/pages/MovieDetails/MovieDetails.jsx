@@ -3,31 +3,28 @@ import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getMovieDetails } from 'services/Api';
+import css from './MovieDetails.module.css';
+
 export const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
   const location = useLocation();
 
-  useEffect(() => { 
-    if(!movieId) return;
-    
-    setTimeout(()=> {const fetchMovieDetails = async movieId => {
+  useEffect(() => {
+    if (!movieId) return;
+
+    const fetchMovieDetails = async movieId => {
       try {
-        setIsLoading(true);
         const movieDetails = await getMovieDetails(movieId);
         setMovieDetails(movieDetails);
       } catch (error) {
         toast.error(`Oops! Something went wrong! ${error}`);
-      } finally {
-        setIsLoading(false);
       }
     };
-    fetchMovieDetails(movieId);}, 3000);
-    
+    fetchMovieDetails(movieId);
   }, [movieId]);
 
-  if (!movieDetails) return null;
+  if (!movieDetails) return <Loader />;
 
   const backLink = location.state?.from ?? '/';
   const { title, release_date, vote_average, overview, genres, poster_path } =
@@ -38,35 +35,37 @@ export const MovieDetails = () => {
   const voteScore = vote_average.toFixed(1) * 10;
   const genresList = genres.map(({ name }) => name).join(' ');
   return (
-    <>
-      {isLoading && <Loader />}
-      <Link to={backLink}>← Go back</Link>
-      <div>
+    <div className={css.container}>
+      <Link to={backLink} className={css.buttonLink}>
+        ← Go back
+      </Link>
+      <div className={css.movieDetailsWraper}>
         <img src={imgUrl} alt={title} width="350" />
-        <div>
-          <h2>
+        <div className={css.movieDescriptionWraper}>
+          <h2 className={css.movieNameTitle}>
             {title} <span>({releaseDate})</span>
           </h2>
-          <p>
+          <p className={css.description}>
             User score: <span>{voteScore}%</span>
           </p>
-          <p>
-            Overview: <span>{overview}</span>
+          <p className={css.movieOverviewTitle}>
+            Overview<span className={css.description}>{overview}</span>
           </p>
-          <p>
-            Genres: <span>{genresList}</span>
+          <p className={css.movieGenresTitle}>
+            Genres<span className={css.description}>{genresList}</span>
           </p>
         </div>
       </div>
       <div>
-        <Link to={'cast'} state={{ from: Link }}>
+        <p className={css.information}>Additional information</p>
+        <Link to={'cast'} state={{ from: Link }} className={css.buttonLink}>
           Cast
         </Link>
-        <Link to={'reviews'} state={{ from: Link }}>
+        <Link to={'reviews'} state={{ from: Link }} className={css.buttonLink } >
           Reviews
         </Link>
-        <Outlet/>
+        <Outlet />
       </div>
-    </>
+    </div>
   );
 };

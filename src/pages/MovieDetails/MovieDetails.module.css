@@ -1,0 +1,70 @@
+.buttonLink {
+  display: inline-block;
+  margin-bottom: 30px;
+  margin-right: 20px;
+  padding: 8px 14px;
+  font-weight: 500;
+  font-size: 18px;
+  border-radius: 4px;
+  border: none;
+  color: #6a9bd8;
+  background-color: #ebf5fc;
+  box-shadow: -2px -2px 5px #ffffff, 3px 3px 5px rgba(0, 0, 0, 0.1);
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+}
+.buttonLink:hover,
+.buttonLink:focus-visible {
+  color: #ebf5fc;
+  background-color: #6a9bd8;
+}
+.buttonLink:focus {
+  outline: 3px solid #ebf5fc;
+  box-shadow: 0px 0px 0px 6px #6a9bd8;
+}
+
+.container {
+    padding: 30px 30px;
+}
+
+.movieDetailsWraper {
+    display: flex;
+    column-gap: 50px;
+    padding-bottom: 30px;
+}
+
+.movieDescriptionWraper {
+    padding-top: 50px;
+}
+
+.movieNameTitle {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.movieOverviewTitle{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.movieGenresTitle {
+    font-size: 24px;
+    font-weight: bold;
+}
+.description {
+    display: block;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 1.4;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 10px;
+}
+
+.information {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+
