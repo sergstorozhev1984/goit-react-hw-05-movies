@@ -2,8 +2,8 @@ import { useState } from "react";
 import css from './SearchForm.module.css';
 import PropTypes from 'prop-types';
 
-export const SearchForm = ({onSubmit}) => {
-    const [query, setQuery] = useState('');
+export const SearchForm = ({onSubmit, searchQuery}) => {
+    const [query, setQuery] = useState(searchQuery !== null ? searchQuery : '');
     
     const handleChange = (e) => {
         setQuery(e.target.value.toLowerCase());
@@ -13,6 +13,7 @@ export const SearchForm = ({onSubmit}) => {
         e.preventDefault();
         onSubmit(query);
     }
+
   return (
     <form className={css.searchForm} onSubmit={handleSubmit}>
       <input className={css.searchFormInput} type="text" onChange={handleChange} value={query}/>

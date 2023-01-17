@@ -36,7 +36,7 @@ export const MovieDetails = () => {
   const genresList = genres.map(({ name }) => name).join(' ');
   return (
     <div className={css.container}>
-      <Link to={backLink} className={css.buttonLink}>
+      <Link to={backLink} className={css.buttonLink} >
         ← Go back
       </Link>
       <div className={css.movieDetailsWraper}>

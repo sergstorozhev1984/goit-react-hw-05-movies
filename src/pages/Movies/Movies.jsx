@@ -36,10 +36,10 @@ export const Movies = () => {
   const onSubmit = query => {
     setSearchParams( {query});
   };
-console.log(searchedMovies);
+
   return (
     <>
-      <SearchForm onSubmit={onSubmit} />
+      <SearchForm onSubmit={onSubmit} searchQuery={searchQuery}/>
       {isLoading && <Loader />}
       {(searchedMovies.length  === 0 && searchQuery && !isLoading) && <NoMovies/>}
       <MoviesList movies={searchedMovies}/>
